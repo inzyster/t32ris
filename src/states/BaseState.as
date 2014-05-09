@@ -1,6 +1,6 @@
 package states  
 {
-	import data.Fonts;
+	import data.assets.Fonts;
 	import flash.system.System;
 	import org.flixel.FlxG;
 	import org.flixel.FlxGroup;

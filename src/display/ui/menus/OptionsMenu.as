@@ -1,6 +1,7 @@
 package display.ui.menus 
 {
 	import com.greensock.TweenMax;
+	import data.Registry;
 	import display.Color;
 	import display.ui.TextGroup;
 	import flash.events.Event;
@@ -28,6 +29,14 @@ package display.ui.menus
 			
 			_menuItems = new TextGroup(3);
 			
+			_bpmItem = new FlxText(-3, 0, FlxG.width + 3, "< " + Registry.BPM.toString() + " >", true);
+			_bpmItem.setFormat("04B", 8, 0xffffff, "center");
+			
+			_menuItems.add(_bpmItem);
+			
+			this.add(_menuItems);
+			
+			_menuItems.selectedIndex = 0;
 		}
 		
 		private function _hide():void
