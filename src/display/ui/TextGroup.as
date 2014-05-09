@@ -15,7 +15,6 @@ package display.ui
 		private var _highlightedColor:uint;
 		
 		private var _selectedIndex:int;
-		private var _wrap:Boolean;
 		
 		public function get selectedIndex():int
 		{
@@ -31,13 +30,12 @@ package display.ui
 			_selectItemAtIndex(index);
 		}
 		
-		public function TextGroup(MaxSize:uint=0, defaultColor:uint = 0xffaaaaaa, highlightedColor:uint = 0xffffffff, wrap:Boolean = false) 
+		public function TextGroup(MaxSize:uint=0, defaultColor:uint = 0xffaaaaaa, highlightedColor:uint = 0xffffffff) 
 		{
 			super(MaxSize);			
 			_selectedIndex = -1;
 			_defaultColor = defaultColor;
 			_highlightedColor = highlightedColor;
-			_wrap = wrap;
 		}
 		
 		override public function add(item:FlxBasic):FlxBasic

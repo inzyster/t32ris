@@ -46,6 +46,11 @@ package display.ui.menus
 		public function setUp():void
 		{
 			
+			var background:FlxTileblock = new FlxTileblock(0, 0, FlxG.width, FlxG.height);
+			background.makeGraphic(background.width, background.height, Color.Black.ARGBValue);
+			background.alpha = _alpha;
+			this.add(background);
+			
 			if (_drawBorders)
 			{
 				_borders = new FlxGroup(4);

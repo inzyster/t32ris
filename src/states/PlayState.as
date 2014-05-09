@@ -1,6 +1,7 @@
 package states
 {
 
+	import com.greensock.TweenMax;
 	import display.Color;
 	import display.ui.menus.OptionsMenu;
 	import org.flixel.*;
@@ -28,13 +29,24 @@ package states
 		}
 		
 		override public function update():void
-		{
-			super.update();
+		{	
 			
-			if (FlxG.keys.TAB)
+			var optionsVisible:Boolean = _options.visible;
+			
+			super.update();			
+
+			if (FlxG.keys.justReleased("TAB") && optionsVisible == false)
 			{
-				_options.visible = true;
-			}
+				_options.alpha = 0.0;
+				_options.visible = true;				
+				TweenMax.to(_options, 0.3, { alpha: 0.7 } );
+			}					
+			
+			if (optionsVisible == true)
+			{
+				return;
+			}			
+			
 		}
 	}
 }

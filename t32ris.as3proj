@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="bin\t32ris.swf" />
+    <movie path="bin\syntetris.swf" />
     <movie fps="60" />
     <movie width="640" />
     <movie height="640" />
@@ -49,11 +49,11 @@
   </build>
   <!-- SWC Include Libraries -->
   <includeLibraries>
-    <!-- example: <element path="..." /> -->
+    <element path="lib\sion065.swc" />
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <!-- example: <element path="..." /> -->
+    <element path="lib\sion065.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

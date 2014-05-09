@@ -18,7 +18,7 @@ package states
 		private var _walls:FlxGroup;				
 		private var _useWalls:Boolean;
 		
-		public function BaseState(useWalls:Boolean = true)
+		public function BaseState(useWalls:Boolean = false)
 		{
 			_useWalls = useWalls;
 		}
@@ -63,7 +63,7 @@ package states
 			
 			if (CONFIG::debug == true)
 			{
-				if (FlxG.keys.ESCAPE)
+				if (FlxG.keys.justReleased("ESCAPE"))
 				{
 					System.exit(0);
 				}

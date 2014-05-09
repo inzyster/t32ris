@@ -3,6 +3,7 @@ package display.tetrominos
 	import flash.display.BitmapData;
 	import flash.geom.Rectangle;
 	import org.flixel.FlxSprite;
+	import utils.Utils;
 	
 	/**
 	 * ...
@@ -30,7 +31,7 @@ package display.tetrominos
 		
 		public function generateGraphic():void
 		{			
-			var alphaValue:uint = ((((uint)(this.alpha * 255.0)) << 24) && 0xff000000);
+			var alphaValue:uint = ((Utils.GetAlphaInt(this.alpha) << 24) && 0xff000000);
 			var fillColor:uint = this.color | alphaValue;
 			var canvas:BitmapData;
 			if (_type == TetrominoType.I)

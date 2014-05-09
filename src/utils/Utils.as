@@ -41,6 +41,19 @@ package utils
 			return;
 		}
 		
+		public static function GetAlphaInt(alpha:Number):uint
+		{
+			return ((alpha * 255.0) as uint);
+		}
+		
+		public static function BlendRGB(from:uint, to:uint, ratio:Number):uint
+		{
+			var r:uint = Math.round((from & 0xff0000 >> 16) * (1.0 - ratio) + (to & 0xff0000 >> 16) * ratio);
+			var g:uint = Math.round((from & 0x00ff00 >> 8) * (1.0 - ratio) + (to & 0x00ff00 >> 8) * ratio);
+			var b:uint = Math.round((from & 0x0000ff) * (1.0 - ratio) + (to & 0x0000ff) * ratio);
+			return (r << 16 | g << 8 | b);
+		}
+		
 	}
 
 }
