@@ -7,6 +7,11 @@ package states
 	public class PlayState extends BaseState
 	{
 		
+		public function PlayState()
+		{
+			super(false);
+		}
+		
 		override public function create():void
 		{
 			super.create();

@@ -16,6 +16,12 @@ package states
 	{
 
 		private var _walls:FlxGroup;				
+		private var _useWalls:Boolean;
+		
+		public function BaseState(useWalls:Boolean = true)
+		{
+			_useWalls = useWalls;
+		}
 		
 		override public function create():void
 		{
@@ -23,28 +29,32 @@ package states
 			
 			new Fonts();
 			
-			_walls = new FlxGroup(4);
+			if (_useWalls)
+			{
 			
-			var wallColor:uint = 0xffffffff;
-			
-			var topWall:FlxTileblock = new FlxTileblock(0, 0, FlxG.width, 1);
-			topWall.makeGraphic(topWall.width, topWall.height, wallColor);
-			
-			var bottomWall:FlxTileblock = new FlxTileblock(0, FlxG.height - 1, FlxG.width, 1);
-			bottomWall.makeGraphic(bottomWall.width, bottomWall.height, wallColor);
-			
-			var leftWall:FlxTileblock = new FlxTileblock(0, 1, 1, FlxG.height - 2);
-			leftWall.makeGraphic(leftWall.width, leftWall.height, wallColor);
-			
-			var rightWall:FlxTileblock = new FlxTileblock(FlxG.width - 1, 1, 1, FlxG.height - 2);
-			rightWall.makeGraphic(rightWall.width, rightWall.height, wallColor);
-			
-			_walls.add(topWall);
-			_walls.add(bottomWall);
-			_walls.add(leftWall);
-			_walls.add(rightWall);
-			
-			this.add(_walls);
+				_walls = new FlxGroup(4);
+				
+				var wallColor:uint = 0xffffffff;
+				
+				var topWall:FlxTileblock = new FlxTileblock(0, 0, FlxG.width, 1);
+				topWall.makeGraphic(topWall.width, topWall.height, wallColor);
+				
+				var bottomWall:FlxTileblock = new FlxTileblock(0, FlxG.height - 1, FlxG.width, 1);
+				bottomWall.makeGraphic(bottomWall.width, bottomWall.height, wallColor);
+				
+				var leftWall:FlxTileblock = new FlxTileblock(0, 1, 1, FlxG.height - 2);
+				leftWall.makeGraphic(leftWall.width, leftWall.height, wallColor);
+				
+				var rightWall:FlxTileblock = new FlxTileblock(FlxG.width - 1, 1, 1, FlxG.height - 2);
+				rightWall.makeGraphic(rightWall.width, rightWall.height, wallColor);
+				
+				_walls.add(topWall);
+				_walls.add(bottomWall);
+				_walls.add(leftWall);
+				_walls.add(rightWall);
+				
+				this.add(_walls);
+			}
 		}
 
 		override public function update():void
@@ -63,7 +73,10 @@ package states
 		
 		public function collideWithWalls(target:FlxObject):void
 		{
-			FlxG.collide(target, _walls);
+			if (_walls != null)
+			{
+				FlxG.collide(target, _walls);
+			}
 		}		
 		
 	}
