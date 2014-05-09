@@ -67,8 +67,7 @@ package states
 				{
 					System.exit(0);
 				}
-			}
-			
+			}			
 		}
 		
 		public function collideWithWalls(target:FlxObject):void
@@ -78,7 +77,7 @@ package states
 				FlxG.collide(target, _walls);
 			}
 		}		
-		
+				
 	}
 
 }
