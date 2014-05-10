@@ -1,5 +1,6 @@
 package display.ui 
 {
+	import com.greensock.TweenMax;
 	import org.flixel.FlxBasic;
 	import org.flixel.FlxGroup;
 	import org.flixel.FlxText;
@@ -10,6 +11,8 @@ package display.ui
 	 */
 	public class TextGroup extends FlxGroup 
 	{
+		
+		private var _useTweens:Boolean;
 		
 		private var _defaultColor:uint;
 		private var _highlightedColor:uint;
@@ -27,15 +30,17 @@ package display.ui
 			{
 				return;
 			}
+			_deselectItemAtIndex(_selectedIndex);
 			_selectItemAtIndex(index);
 		}
 		
-		public function TextGroup(MaxSize:uint=0, defaultColor:uint = 0xffaaaaaa, highlightedColor:uint = 0xffffffff) 
+		public function TextGroup(MaxSize:uint=0, useTweens:Boolean = false, defaultColor:uint = 0xaaaaaa, highlightedColor:uint = 0xffffff) 
 		{
 			super(MaxSize);			
 			_selectedIndex = -1;
 			_defaultColor = defaultColor;
 			_highlightedColor = highlightedColor;
+			_useTweens = useTweens;
 		}
 		
 		override public function add(item:FlxBasic):FlxBasic
@@ -55,7 +60,15 @@ package display.ui
 			{
 				return;
 			}
-			(this.members[index] as FlxText).color = _defaultColor;
+			var target:FlxText = (this.members[index] as FlxText);
+			if (_useTweens == false)
+			{
+				target.color = _defaultColor;
+			}
+			else 
+			{
+				TweenMax.to(target, 0.2, { hexColors: { color:_defaultColor }} );
+			}
 		}
 		
 		private function _selectItemAtIndex(index:int):void
@@ -64,7 +77,15 @@ package display.ui
 			{
 				return;
 			}
-			(this.members[index] as FlxText).color = _highlightedColor;
+			var target:FlxText = (this.members[index] as FlxText);
+			if (_useTweens == false)
+			{
+				target.color = _highlightedColor;
+			}
+			else 
+			{
+				TweenMax.to(target, 0.2, { hexColors: { color: _highlightedColor }} );
+			}
 			_selectedIndex = index;
 		}
 				

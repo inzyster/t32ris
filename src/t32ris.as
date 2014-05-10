@@ -1,6 +1,8 @@
 package
 {
 
+	import com.greensock.plugins.HexColorsPlugin;
+	import com.greensock.plugins.TweenPlugin;
 	import data.Registry;
 	import org.flixel.*;
 	import states.MenuState;
@@ -11,6 +13,8 @@ package
 
 		public function t32ris()
 		{
+			TweenPlugin.activate([HexColorsPlugin]);			
+			
 			Registry.initialize();
 			
 			super(32, 32, MenuState, 20, 60, 60);

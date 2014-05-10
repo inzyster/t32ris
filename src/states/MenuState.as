@@ -38,7 +38,7 @@ package states
 			}
 			_elapsed += FlxG.elapsed;
 			
-			_enter.color = (0xff000000 | Utils.BlendRGB(Color.LightGray.RGBValue, Color.Gray.RGBValue, (Math.sin(_elapsed * 2.0) + 1.0) / 2.0));
+			_enter.color = (0xff000000 | Utils.InterpolateRGB(Color.LightGray.RGBValue, Color.Gray.RGBValue, (Math.sin(_elapsed * 2.0) + 1.0) / 2.0));
 		}						
 		
 	}
