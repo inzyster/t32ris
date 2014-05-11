@@ -17,6 +17,8 @@ package display.ui.menus
 	public class OptionsMenu extends BaseMenu 
 	{
 		
+		private static const REPEAT_DELAY:uint = 45;
+		
 		private var _menuItems:TextGroup;
 		
 		private var _bpmItem:FlxText;
@@ -25,6 +27,9 @@ package display.ui.menus
 		
 		private var _scaleKeys:Vector.<ScaleKey>;
 		private var _scaleTypes:Vector.<ScaleType>;
+		
+		private var _repeatLeftCounter:int;
+		private var _repeatRightCounter:int;
 		
 		public function OptionsMenu()
 		{			
@@ -84,16 +89,49 @@ package display.ui.menus
 			{
 				_menuItems.selectedIndex = Utils.WrapInt(_menuItems.selectedIndex + 1, 0, _menuItems.length);
 			}
+			if (FlxG.keys.justPressed("LEFT"))
+			{
+				_repeatLeftCounter = 0;
+				_previousValue();
+			}
+			else if (FlxG.keys.LEFT && _repeatLeftCounter >= REPEAT_DELAY)
+			{
+				if (_repeatLeftCounter % 3 == 0)
+				{
+					_previousValue();
+				}
+			}
 			else if (FlxG.keys.justReleased("LEFT"))
 			{
-				_previousValue();
+				_repeatLeftCounter = -1;
+			}
+			else if (FlxG.keys.justPressed("RIGHT"))
+			{
+				_repeatRightCounter = 0;
+				_nextValue();
+			}
+			else if (FlxG.keys.RIGHT && _repeatRightCounter >= REPEAT_DELAY)
+			{
+				if (_repeatRightCounter % 3 == 0)
+				{
+					_nextValue();
+				}
 			}
 			else if (FlxG.keys.justReleased("RIGHT"))
 			{
-				_nextValue();
+				_repeatRightCounter = -1;
 			}
 			else if (FlxG.keys.justReleased("TAB"))
 			{
+			}
+			
+			if (_repeatLeftCounter >= 0)
+			{
+				_repeatLeftCounter++;
+			}
+			if (_repeatRightCounter >= 0)
+			{
+				_repeatRightCounter++;
 			}
 		}
 		
